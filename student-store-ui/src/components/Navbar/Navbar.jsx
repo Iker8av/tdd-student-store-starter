@@ -7,8 +7,8 @@ export default function Navbar() {
     <nav className="navbar">
       <div>
         <ul>
-          <li><img src="" alt="Logo" /></li>
-          <li>Home</li>
+          <li><img src="storeLogo.png" alt="Logo" /></li>
+          <li><Link to="/">Home</Link></li>
           <li>Buy</li>
           <li>About Us</li>
           <li>Contact</li>

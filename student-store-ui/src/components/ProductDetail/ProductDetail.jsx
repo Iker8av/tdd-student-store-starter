@@ -32,7 +32,7 @@ export default function ProductDetail({cart, updateCart}) {
 
     return (
         <div>
-            <ProductView product={product} updateCart={updateCart}/>
+            <ProductView product={product} cart={cart} updateCart={updateCart}/>
         </div>
     )
 }

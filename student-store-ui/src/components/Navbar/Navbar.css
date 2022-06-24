@@ -19,4 +19,6 @@
     cursor: pointer;
     margin: 10px 40px;
     font-weight: bold;
+    font-style: none;
+    color: white;
 }
