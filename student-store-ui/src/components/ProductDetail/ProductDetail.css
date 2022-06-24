@@ -1,0 +1,10 @@
+.productCard-Detail{
+    width: 80%;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+}
+
+.productCard-Detail > img{
+    width: 200px;
+}

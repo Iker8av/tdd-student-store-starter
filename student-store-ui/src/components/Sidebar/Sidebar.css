@@ -1,0 +1,167 @@
+.sidebar{
+    width: 100px;
+    height: 100vh;
+    background-color: var(--sidebarColor);
+    color: white;
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    transition: all .1s ease-in-out;
+}
+
+.sidebar > div{
+    margin: 10px 0;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.sidebar img{
+    cursor: pointer;
+    width: 40px;
+    height: 37px;
+}
+
+.sidebar li > div{
+    display: none;
+}
+
+.sidebar.active{
+    width: 40%;
+    position: fixed;
+    z-index: 100;
+    display: block;
+}
+
+.sidebar.active > div{
+    margin: 25px 30px;
+}
+
+.sidebar.active li{
+    display: flex;
+    flex-direction: row;
+    align-items: top;
+}
+
+.sidebar.active li > img{
+    margin-right: 15px;
+}
+
+.sidebar.active li > div{
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px;
+    width: 100%;
+}
+
+.checkout-form{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+}
+
+.checkout-form p, .checkout-form span{
+    margin: 10px 0;
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.checkout-form > input{
+    margin: 10px 0;
+    width: 75%;
+    border-style: none;
+    height: 40px;
+}
+
+.checkbox input{
+    margin: 10px;
+}
+
+.checkout-button {
+    border-style: none;
+    background-color: white;
+    width: 200px;
+    height: 30px;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 4px;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.header-row {
+    display: flex;
+    height: 50px;
+    background: var(--navColor);
+    margin-bottom: 5px;
+}
+
+.header-row span {
+    flex: 1;
+    color: var(--pure-white);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 17px;
+    font-weight: 600;
+    margin-left: 5px;
+}
+
+.header-row span.center {
+    display: flex;
+    justify-content: center;
+}
+
+.product-row {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 5px;
+    margin-top: 5px;
+    color: black;
+}
+
+.product-row span {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    font-size: 17px;
+    margin-left: 15px;
+}
+
+.product-row span.center {
+    display: flex;
+    justify-content: center;
+}
+
+.checkout-success {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkout-success p, .checkout-success li{
+    margin: 10px 0;
+    font-weight: normal;
+    font-size: 18px;
+}
+
+.checkout-success button{
+    border-style: none;
+    background-color: white;
+    width: 125px;
+    height: 25px;
+    margin: 0 15px 0 0;
+}

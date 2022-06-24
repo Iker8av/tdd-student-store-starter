@@ -10,16 +10,16 @@ Selling merchandise in the modern era requires digital solutions. For this proje
 
 #### Core Features
 
-- [ ] Displays the following sections: header, banner, search, product grid, about, contact, and footer.
-- [ ] On initial page load, display the products at the [GET /store endpoint](https://codepath-store-api.herokuapp.com/store).
-- [ ] User can click on the categories (Clothing, food, etc) to filter the product grid by type.
-- [ ] User can search for products.
+- [x] Displays the following sections: header, banner, search, product grid, about, contact, and footer.
+- [x] On initial page load, display the products at the [GET /store endpoint](https://codepath-store-api.herokuapp.com/store).
+- [x] User can click on the categories (Clothing, food, etc) to filter the product grid by type.
+- [x] User can search for products.
 - [ ] User can click on a product in the grid to view additional product details. Navigation is via a React Router.
-- [ ] User can click to expand the shopping cart in the left navigation.
-- [ ] User can click the '+' button on a product cart to increment that product in the shopping cart.
-- [ ] User can click the '-' button on a product cart to increment that product in the shopping cart.
-- [ ] Shopping cart displays a table of products, quantities, subtotal, tax, and total.
-- [ ] User can check out, and can view receipt upon completion.
+- [x] User can click to expand the shopping cart in the left navigation.
+- [x] User can click the '+' button on a product cart to increment that product in the shopping cart.
+- [x] User can click the '-' button on a product cart to increment that product in the shopping cart.
+- [x] Shopping cart displays a table of products, quantities, subtotal, tax, and total.
+- [x] User can check out, and can view receipt upon completion.
 
 #### Stretch Features
 
@@ -42,8 +42,8 @@ The following specifications were met on the Express backend and the React front
     - [ ] `/` - Should render the `Home.jsx` component
     - [ ] `/products/:productId` - should render the `ProductDetail` component
     - [ ] `*` - anything else should render the `NotFound` component
-  - [ ] Renders the `Navbar` component on every route
-  - [ ] Renders the `Sidebar` component on every route
+  - [x] Renders the `Navbar` component on every route
+  - [x] Renders the `Sidebar` component on every route
   - [ ] Should create **at least** the following state variables:
     - [ ] `products` - an array of product objects that is initially empty.
     - [ ] `isFetching` - a boolean value representing whether or not the App is currently fetching the `products` from the API.
@@ -288,7 +288,7 @@ The following specifications were met on the Express backend and the React front
 Add your response here
 
 * If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
-  
+
 Add your response here
 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
