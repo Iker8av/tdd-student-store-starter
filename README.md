@@ -285,15 +285,15 @@ The following specifications were met on the Express backend and the React front
 
 * Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Add your response here
+Yes, I understood how React works and I understood perfectly how useState and useEffect work, but I think I need to learn more about Routes and Links
 
 * If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
 
-Add your response here
+A better UI, I know this is not the most important thing, but I think It could looks better
 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
-Add your response here
+I should no focus on User Interface first and first get all the features work, Do the shopping cart works was definitely my best achivement, beacuse i use all i learned this week to make it works (useState, useEffect, fetch, and create components)
 
 ### Open-source libraries used
 
@@ -302,3 +302,6 @@ Add your response here
 ### Shout out
 
 Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
+
+My instructor Phineas
+and my manager Alex Strandberg
