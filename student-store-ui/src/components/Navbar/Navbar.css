@@ -7,17 +7,22 @@
     padding: 15px;
 }
 
+.navbar img{
+    width: 40px;
+}
+
 .navbar ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 .navbar li {
     cursor: pointer;
-    margin: 10px 40px;
+    margin: 0 40px;
     font-weight: bold;
     font-style: none;
     color: white;

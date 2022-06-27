@@ -1,5 +1,6 @@
 import * as React from "react"
 import "./Home.css"
+import { Link } from "react-router-dom";
 
 export default function Home({products, cart, updateCart}) {
   const [searchInput, updateInput] = React.useState("")
@@ -89,6 +90,11 @@ export function SearchInput({value, handleUpdateInput}){
 }
 
 export function Product({product, updateCart, cart}){
+  var formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  });
+
   function handleAddCart(){
     let handleCart = [...cart];
 
@@ -138,25 +144,26 @@ export function Product({product, updateCart, cart}){
   }
 
   return(
-    <div className="productCard" key={product.id}>
-      <img src={product.image} alt="Img Product" />
-      <div className="productDetails">
-        <div className="headerProduct">
-          <h3>{product.name}</h3>
-          <div className="productButtons">
-            <button className="addProduct" onClick={handleAddCart}>+</button>
-            <button className="deleteProduct" onClick={handleDeleteCart}>-</button>
+      <div className="productCard" key={product.id}>
+        <img src={product.image} alt="Img Product" />
+        <div className="productDetails">
+          <div className="headerProduct">
+          <Link to={`/products/${product.id}`} style={{color: 'inherit', textDecoration: 'none'}}><h3>{product.name}</h3></Link>
+            <div className="productButtons">
+              <button className="addProduct" onClick={handleAddCart}>+</button>
+              <button className="deleteProduct" onClick={handleDeleteCart}>-</button>
+            </div>
           </div>
+          <div className="stars">
+            <img src="../../../img/star_filled.png" alt="X" />
+            <img src="../../../img/star_filled.png" alt="X" />
+            <img src="../../../img/star_filled.png" alt="X" />
+            <img src="../../../img/star_empty.png" alt="X" />
+            <img src="../../../img/star_empty.png" alt="X" />
+          </div>
+          <p>{formatter.format(product.price)}</p>
         </div>
-        <div className="stars">
-          <img src="../../../img/star_filled.png" alt="X" />
-          <img src="../../../img/star_filled.png" alt="X" />
-          <img src="../../../img/star_filled.png" alt="X" />
-          <img src="../../../img/star_empty.png" alt="X" />
-          <img src="../../../img/star_empty.png" alt="X" />
-        </div>
-        <p>${product.price}</p>
       </div>
-    </div>
+
   )
 }

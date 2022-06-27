@@ -144,6 +144,10 @@
   background-color: white;
 }
 
+/* .productCard h3, .productCard p{
+  text-decoration: 'none';
+} */
+
 .productDetails{
   margin: 10px;
 }

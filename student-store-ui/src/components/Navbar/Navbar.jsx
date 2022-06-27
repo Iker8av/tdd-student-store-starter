@@ -7,8 +7,8 @@ export default function Navbar() {
     <nav className="navbar">
       <div>
         <ul>
-          <li><img src="storeLogo.png" alt="Logo" /></li>
-          <li><Link to="/">Home</Link></li>
+          <li><Link to="/" style={{color: 'inherit', textDecoration: 'none'}}><img src="https://www.freeiconspng.com/thumbs/cart-icon/basket-cart-icon-27.png" alt="Logo" /></Link></li>
+          <li><Link to="/" style={{color: 'inherit', textDecoration: 'none'}}>Home</Link></li>
           <li>Buy</li>
           <li>About Us</li>
           <li>Contact</li>
