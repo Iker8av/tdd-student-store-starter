@@ -139,20 +139,16 @@
   gap: 30px;
 }
 
-.productCard{
+.product-card{
   width: 250px;
   background-color: white;
 }
-
-/* .productCard h3, .productCard p{
-  text-decoration: 'none';
-} */
 
 .productDetails{
   margin: 10px;
 }
 
-.productCard > img{
+.media{
   width: 100%;
 }
 

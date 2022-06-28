@@ -52,18 +52,18 @@ export default function Sidebar({cart}) {
   return (
     <section className={`sidebar ${openSlidebar ? "active" : ""}`}>
       <div>
-        <img src="../../../img/menuIcon.png" alt="=" onClick={handleSlidebar}/>
+        <img src="../../../img/menuIcon.png" alt="=" className="toggle-button" onClick={handleSlidebar}/>
         <ul>
           <li><img src="../../../img/profileIcon.png" alt="A" />
             <div>
               <span>Account Information</span>
-              <AccountInfo username={username} email={email} handleUsername={handleUsername} handleEmail={handleEmail} handleCheckout={handleCheckout}/>
+              <AccountInfo username={username} email={email} handleOnCheckoutFormChange={handleUsername} handleEmail={handleEmail} handleCheckout={handleCheckout}/>
             </div>
           </li>
           <li><img src="../../../img/shoppingCart.png" alt="C" />
             <div className="shopping-cart">
               <span>My Shopping Cart</span>
-              {cart.length > 0 ? <TableCart cart={cart}/> : <p>No items added to cart yet</p>}
+              {cart.length > 0 ? <TableCart cart={cart}/> : <p className="notification">No items added to cart yet</p>}
             </div>
           </li>
           <li>
@@ -82,10 +82,10 @@ export function TableCart({cart}){
   return(
     <div className="header">
       <div className="header-row">
-        <span class="flex-2">Name</span>
-        <span class="center">Quantity</span>
-        <span class="center">Unit Price</span>
-        <span class="center">Cost</span>
+        <span className="flex-2">Name</span>
+        <span className="center">Quantity</span>
+        <span className="center">Unit Price</span>
+        <span className="center">Cost</span>
       </div>
       {cart.map(product => {return <ProductRow product={product}/>}) }
     </div>
@@ -95,22 +95,22 @@ export function TableCart({cart}){
 export function ProductRow({product}){
   return(
     <div className="product-row">
-      <span class="flex-2 cart-product-name">{product.name}</span>
-      <span class="center cart-product-quantity">{product.quantity}</span>
-      <span class="center cart-product-price">${product.unitPrice}</span>
-      <span class="center cart-product-subtotal">${product.cost}</span>
+      <span className="flex-2 cart-product-name">{product.name}</span>
+      <span className="center cart-product-quantity">{product.quantity}</span>
+      <span className="center cart-product-price">${product.unitPrice}</span>
+      <span className="center cart-product-subtotal">${product.cost}</span>
     </div>
   )
 }
 
-export function AccountInfo({username, email, handleUsername, handleEmail, handleCheckout}){
+export function AccountInfo({username, email, handleOnCheckoutFormChange, handleEmail, handleCheckout}){
   return (
     <div className="checkout-form">
       <p>Name:</p>
-      <input type="text" value={username} onChange={handleUsername} id="inputName" placeholder="Student Name"/>
+      <input className="checkout-form-input" type="text" name="name" value="checkoutForm.email" onChange={handleOnCheckoutFormChange} id="inputName" placeholder="Student Name"/>
       <p>Email:</p>
-      <input type="text" value={email} onChange={handleEmail} id="inputEmail" placeholder="student@school.com"/>
-      <label class="checkbox"><input name="termsAndConditions" type="checkbox"/><span class="label">I agree to the <a href="#terms-and-conditions">terms and conditions</a></span></label>
+      <input className="checkout-form-input" type="email" name="email" value={email} onChange={handleEmail} id="inputEmail" placeholder="student@codepath.org"/>
+      <label className="checkbox"><input name="termsAndConditions" type="checkbox"/><span className="label">I agree to the <a href="#terms-and-conditions">terms and conditions</a></span></label>
       <button onClick={handleCheckout} className="checkout-button">Checkout</button>
     </div>
   )
@@ -118,7 +118,7 @@ export function AccountInfo({username, email, handleUsername, handleEmail, handl
 
 export function Receipt({checkoutCart}){
   return(
-    <div className="receipt">
+    <div className="checkout-form">
       <p>Showing Receipt for {checkoutCart.username}</p>
       <p>Email:  {checkoutCart.email}</p>
 

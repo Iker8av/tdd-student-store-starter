@@ -21,8 +21,8 @@ export default function Home({products, cart, updateCart}) {
         </div>
         <div className="gridContainer">
           {products.map(product => {
-            if (product.name.toLowerCase().includes(searchInput.toLowerCase()) && (product.category.toLowerCase() === category.toLowerCase() || category.toLowerCase() === "All Categories".toLowerCase())) {
-              return <Product product={product} updateCart={updateCart} cart={cart}/>
+            if (product.name.toLowerCase().includes(searchInput.toLowerCase().trim()) && (product.category.toLowerCase() === category.toLowerCase() || category.toLowerCase() === "All Categories".toLowerCase())) {
+              return <ProductCard key={product.id} product={product} productid={product.id} updateCart={updateCart} cart={cart}/>
             }})}
         </div>
       </div>
@@ -89,13 +89,15 @@ export function SearchInput({value, handleUpdateInput}){
   )
 }
 
-export function Product({product, updateCart, cart}){
+export function ProductCard({product, productid, updateCart, cart}){
+  const [itemsOnCart, handleitemsOnCart] = React.useState(0)
+
   var formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
   });
 
-  function handleAddCart(){
+  function handleAddItemToCart(){
     let handleCart = [...cart];
 
 
@@ -104,29 +106,33 @@ export function Product({product, updateCart, cart}){
     if (index > -1){
       let repeatedProduct = handleCart[index].quantity + 1
 
-      const newProuct = {
+      const newProduct = {
         id: product.id,
         name: product.name,
         unitPrice: product.price,
         quantity: repeatedProduct,
         cost: (product.price * repeatedProduct)
       }
-      handleCart[index] = newProuct
+      handleCart[index] = newProduct
+
+      handleitemsOnCart(repeatedProduct)
       updateCart(handleCart)
     }
     else if (index === -1){
-      const newProuct = {
+      const newProduct = {
         id: product.id,
         name: product.name,
         unitPrice: product.price,
         quantity: 1,
         cost: (product.price)
       }
-      updateCart([...cart, newProuct])
+
+      handleitemsOnCart(1)
+      updateCart([...cart, newProduct])
     }
   }
 
-  function handleDeleteCart(){
+  function handleRemoveItemFromCart(){
     let handleCart = [...cart];
     let index = cart.findIndex(item => item.name === product.name)
 
@@ -134,24 +140,25 @@ export function Product({product, updateCart, cart}){
       if (handleCart[index].quantity > 1){
         handleCart[index].quantity--
         handleCart[index].cost -= product.price
+        handleitemsOnCart(handleCart[index].quantity)
       }
       else{
         handleCart.splice(index, 1)
+        handleitemsOnCart(0)
       }
-
       updateCart(handleCart)
     }
   }
 
   return(
-      <div className="productCard" key={product.id}>
-        <img src={product.image} alt="Img Product" />
+      <div className="product-card" key={product.id}>
+        <Link to={`/products/${product.id}`} style={{color: 'inherit', textDecoration: 'none'}}><img src={product.image} alt="Img Product" className="media"/></Link>
         <div className="productDetails">
           <div className="headerProduct">
-          <Link to={`/products/${product.id}`} style={{color: 'inherit', textDecoration: 'none'}}><h3>{product.name}</h3></Link>
+          <h3 className="product-name">{product.name}</h3>
             <div className="productButtons">
-              <button className="addProduct" onClick={handleAddCart}>+</button>
-              <button className="deleteProduct" onClick={handleDeleteCart}>-</button>
+              <button className="add" onClick={handleAddItemToCart}>+</button>
+              <button className="remove" onClick={handleRemoveItemFromCart}>-</button>
             </div>
           </div>
           <div className="stars">
@@ -161,7 +168,8 @@ export function Product({product, updateCart, cart}){
             <img src="../../../img/star_empty.png" alt="X" />
             <img src="../../../img/star_empty.png" alt="X" />
           </div>
-          <p>{formatter.format(product.price)}</p>
+          <p className="product-price">{formatter.format(product.price)}</p>
+          <p className="product-quantity">{itemsOnCart}</p>
         </div>
       </div>
 

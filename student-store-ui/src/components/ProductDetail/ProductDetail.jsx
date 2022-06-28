@@ -9,15 +9,15 @@ export default function ProductDetail({cart, updateCart}) {
     const params = useParams()
 
     React.useEffect(() => {
-        axios(`https://codepath-store-api.herokuapp.com/store/${params.productId}`)
+        axios.get(`http://localhost:3001/store/${params.productId}`)
           .then(response => {
-            setProduct(response.data.product)
-            console.log(response.data.product)
+            setProduct(response.data)
+            console.log(response.data)
           })
           .catch(error => {
             console.error("Error fetching: ", error)
           })
-      }, [])
+      }, [product])
 
       if (product == 0){
           return (
@@ -40,7 +40,6 @@ export default function ProductDetail({cart, updateCart}) {
 export function ProductView({product, cart, updateCart}){
     function handleAddCart(){
         let handleCart = [...cart];
-
 
         let index = cart.findIndex(item => item.name === product.name)
 
