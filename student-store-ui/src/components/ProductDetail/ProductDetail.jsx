@@ -9,10 +9,9 @@ export default function ProductDetail({cart, updateCart}) {
     const params = useParams()
 
     React.useEffect(() => {
-        axios.get(`http://localhost:3001/store/${params.productId}`)
+        axios(`https://codepath-store-api.herokuapp.com/store/${params.productId}`)
           .then(response => {
-            setProduct(response.data)
-            console.log(response.data)
+            setProduct(response.data.product)
           })
           .catch(error => {
             console.error("Error fetching: ", error)

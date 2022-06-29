@@ -15,7 +15,7 @@ export default function App() {
   const [data, setData] = React.useState([])
 
   React.useEffect(() => {
-    axios.get("http://localhost:3001/store")
+    axios("https://codepath-store-api.herokuapp.com/store")
       .then(response => {
         setData(response.data.products)
         console.log(response.data.products)
