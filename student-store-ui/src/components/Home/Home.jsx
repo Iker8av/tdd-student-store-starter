@@ -99,8 +99,6 @@ export function ProductCard({product, productid, updateCart, cart}){
 
   function handleAddItemToCart(){
     let handleCart = [...cart];
-
-
     let index = cart.findIndex(item => item.name === product.name)
 
     if (index > -1){

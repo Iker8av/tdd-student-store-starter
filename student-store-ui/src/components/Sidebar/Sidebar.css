@@ -147,6 +147,29 @@
     justify-content: center;
 }
 
+.footer-row {
+    display: flex;
+    height: 50px;
+    background: var(--subnavColor);
+    margin-bottom: 5px;
+}
+
+.footer-row span {
+    flex: 1;
+    color: var(--pure-white);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 17px;
+    font-weight: 600;
+    margin-left: 5px;
+}
+
+.footer-row span.center {
+    display: flex;
+    justify-content: center;
+}
+
 .checkout-success {
     display: flex;
     flex-direction: column;

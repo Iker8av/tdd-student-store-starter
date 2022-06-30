@@ -3,28 +3,14 @@ const morgan = require('morgan')
 var bodyParser = require('body-parser')
 const store = require('./routes/store.js')
 const data = require('./data/db.json')
+const cors = require('cors')
 
 const app = express()
 
+app.use(cors())
 app.use(bodyParser.json())
 app.use(morgan('tiny'))
-app.use("/", store)
-
-app.get('/store', (req, res) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.status(200).send(data)
-})
-
-app.get('/store/:productId', (req, res) => {
-    res.header("Access-Control-Allow-Origin", "*");
-
-    data.products.map(item => {
-        if (item.id == req.params.productId){
-            res.status(200).send(item)
-        }
-    })
-
-})
+app.use("/store", store)
 
 app.use((error, req, res, next) => {
     const {status, message} = error

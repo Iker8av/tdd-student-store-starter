@@ -9,7 +9,7 @@ export default function ProductDetail({cart, updateCart}) {
     const params = useParams()
 
     React.useEffect(() => {
-        axios(`https://codepath-store-api.herokuapp.com/store/${params.productId}`)
+        axios.get(`http://localhost:3001/store/${params.productId}`)
           .then(response => {
             setProduct(response.data.product)
           })

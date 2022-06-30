@@ -1,21 +1,14 @@
 import * as React from "react"
 import "./Sidebar.css"
 
-export default function Sidebar({cart}) {
+export default function Sidebar({cart, checkoutCart, updateCheckoutCart, username, updateUsername, email, updateEmail, handleOnSubmitCheckoutForm, subtotal, handleSubtotal}) {
   const [openSlidebar, openSlidebarFunc] = React.useState(false)
   const [checkout, updateCheckout] = React.useState(false)
 
-  const [username, updateUsername] = React.useState("")
-  const [email, updateEmail] = React.useState("")
-
-  const [checkoutCart, updateCheckoutCart] = React.useState({
-    products: [],
-    subtotal: 0,
-    total: 0
-  })
 
   function handleSlidebar(){
     openSlidebarFunc(!openSlidebar)
+    handleSubtotal()
   }
 
   function handleUsername(event){
@@ -27,9 +20,6 @@ export default function Sidebar({cart}) {
   }
 
   function handleCheckout(){
-    var cartSubtotal = 0;
-    cart.map(item => cartSubtotal =+ parseFloat(item.cost))
-
     var formatter = new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
@@ -39,8 +29,8 @@ export default function Sidebar({cart}) {
       username: username,
       email: email,
       products: cart,
-      subtotal: formatter.format(cartSubtotal),
-      total: formatter.format(cartSubtotal + (cartSubtotal + 0.16))
+      subtotal: formatter.format(subtotal),
+      total: formatter.format(subtotal + (subtotal * 0.0875))
     }
 
     console.log('newCheckout: ', newCheckout);
@@ -63,13 +53,13 @@ export default function Sidebar({cart}) {
           <li><img src="../../../img/shoppingCart.png" alt="C" />
             <div className="shopping-cart">
               <span>My Shopping Cart</span>
-              {cart.length > 0 ? <TableCart cart={cart}/> : <p className="notification">No items added to cart yet</p>}
+              {cart.length > 0 ? <TableCart cart={cart} subtotal={subtotal}/> : <p className="notification">No items added to cart yet</p>}
             </div>
           </li>
           <li>
             <div className="checkout-success">
               <span>Checkout</span>
-              {checkout ? <Receipt checkoutCart={checkoutCart}/> : <p>Add items to you cart, Fill the information above and press Checkout button to continue</p>}
+              {checkout ? <Receipt checkoutCart={checkoutCart} handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm}/> : <p>Add items to you cart, Fill the information above and press Checkout button to continue</p>}
             </div>
           </li>
         </ul>
@@ -78,7 +68,12 @@ export default function Sidebar({cart}) {
   )
 }
 
-export function TableCart({cart}){
+export function TableCart({cart, subtotal}){
+  var formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  });
+
   return(
     <div className="header">
       <div className="header-row">
@@ -87,7 +82,15 @@ export function TableCart({cart}){
         <span className="center">Unit Price</span>
         <span className="center">Cost</span>
       </div>
-      {cart.map(product => {return <ProductRow product={product}/>}) }
+      {cart.map(product => {return <ProductRow key={product.id} product={product}/>}) }
+      <div className="footer-row">
+        <span className="flex-2">Subtotal:</span>
+        <span className="center">{formatter.format(subtotal)}</span>
+      </div>
+      <div className="footer-row">
+        <span className="flex-2">Total:</span>
+        <span className="center">{formatter.format(subtotal + (subtotal*0.0875))}</span>
+      </div>
     </div>
   )
 }
@@ -107,7 +110,7 @@ export function AccountInfo({username, email, handleOnCheckoutFormChange, handle
   return (
     <div className="checkout-form">
       <p>Name:</p>
-      <input className="checkout-form-input" type="text" name="name" value="checkoutForm.email" onChange={handleOnCheckoutFormChange} id="inputName" placeholder="Student Name"/>
+      <input className="checkout-form-input" type="text" name="name" value={username} onChange={handleOnCheckoutFormChange} id="inputName" placeholder="Student Name"/>
       <p>Email:</p>
       <input className="checkout-form-input" type="email" name="email" value={email} onChange={handleEmail} id="inputEmail" placeholder="student@codepath.org"/>
       <label className="checkbox"><input name="termsAndConditions" type="checkbox"/><span className="label">I agree to the <a href="#terms-and-conditions">terms and conditions</a></span></label>
@@ -116,7 +119,7 @@ export function AccountInfo({username, email, handleOnCheckoutFormChange, handle
   )
 }
 
-export function Receipt({checkoutCart}){
+export function Receipt({checkoutCart, handleOnSubmitCheckoutForm}){
   return(
     <div className="checkout-form">
       <p>Showing Receipt for {checkoutCart.username}</p>
@@ -127,12 +130,12 @@ export function Receipt({checkoutCart}){
           <li>{item.quantity} - {item.name} = ${item.unitPrice} = ${item.cost}</li>
         })}
         <li>Subtotal = {checkoutCart.subtotal}</li>
-        <li>Total (+Taxes) = {checkoutCart.total}</li>
+        <li>Total (+ Taxes) = {checkoutCart.total}</li>
       </ul>
 
       <div>
-        <button>Shop More</button>
-        <button type="submit"> Exit</button>
+        {/* <button >Shop More</button> */}
+        <button onClick={handleOnSubmitCheckoutForm} type="submit"> Submit</button>
       </div>
     </div>
   )
