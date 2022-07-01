@@ -175,6 +175,21 @@
       ],
       "total": 0,
       "createdAt": "2022-06-30T21:17:04.637Z"
+    },
+    {
+      "id": 2,
+      "user": {
+        "name": "name",
+        "email": "keke"
+      },
+      "shoppingCart": [
+        {
+          "itemId": 3,
+          "quantity": 1
+        }
+      ],
+      "total": 0,
+      "createdAt": "2022-07-01T01:10:07.150Z"
     }
   ]
 }

@@ -60,6 +60,10 @@ export default function App() {
         console.log(res);
         console.log(res.data);
       })
+      updateProducts([])
+      updateUsername("")
+      updateEmail("")
+      updateSubtotal(0)
   }
 
   React.useEffect(() => {
